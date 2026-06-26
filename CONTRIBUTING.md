@@ -62,8 +62,8 @@ composer test:coverage   # With clover coverage report
 Single test file or method:
 
 ```bash
-vendor/bin/phpunit tests/Unit/CloudWatchLoggerTest.php
-vendor/bin/phpunit --filter testInvokeReturnsLoggerInstance tests/Unit/CloudWatchLoggerTest.php
+vendor/bin/phpunit tests/Unit/CloudWatchLoggerFactoryTest.php
+vendor/bin/phpunit --filter testInvokeReturnsLoggerInstance tests/Unit/CloudWatchLoggerFactoryTest.php
 ```
 
 ### Standards
