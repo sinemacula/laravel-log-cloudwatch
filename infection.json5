@@ -1,0 +1,67 @@
+{
+    $schema: "./vendor/infection/infection/resources/schema.json",
+    source: {
+        directories: [
+            "src"
+        ]
+    },
+    logs: {
+        summary: "build/infection-summary.log",
+        text: "build/infection.log"
+    },
+    phpUnit: {
+        configDir: ".",
+        customPath: "vendor/bin/phpunit"
+    },
+    timeout: 15,
+    mutators: {
+        "@default": true,
+        // (string) cast on log_group/log_stream, already guaranteed to be
+        // non-empty strings by validate(); removing it cannot change behaviour.
+        CastString: {
+            ignore: [
+                "SineMacula\\Log\\CloudWatch\\CloudWatchLoggerFactory::__invoke"
+            ]
+        },
+        // (bool) casts on bubble/create_group/create_stream are no-ops: the
+        // handler constructor's typed bool params coerce the value either way
+        // (no strict_types), so the cast cannot change behaviour.
+        CastBool: {
+            ignore: [
+                "SineMacula\\Log\\CloudWatch\\CloudWatchLoggerFactory::__invoke"
+            ]
+        },
+        // (int) casts on values already proven numeric; the handler's typed int
+        // params coerce them identically with or without the cast.
+        CastInt: {
+            ignore: [
+                "SineMacula\\Log\\CloudWatch\\CloudWatchLoggerFactory::intConfig",
+                "SineMacula\\Log\\CloudWatch\\CloudWatchLoggerFactory::resolveRetention"
+            ]
+        },
+        // array_values only reindexes the resolved processors; Monolog treats
+        // either form identically.
+        UnwrapArrayValues: {
+            ignore: [
+                "SineMacula\\Log\\CloudWatch\\CloudWatchLoggerFactory::resolveProcessors"
+            ]
+        },
+        // The formatter/level exception messages are informational; reordering
+        // or dropping a concatenated operand changes only the wording, not the
+        // thrown type or control flow.
+        Concat: {
+            ignore: [
+                "SineMacula\\Log\\CloudWatch\\CloudWatchLoggerFactory::resolveFormatter",
+                "SineMacula\\Log\\CloudWatch\\CloudWatchLoggerFactory::resolveLevel",
+                "SineMacula\\Log\\CloudWatch\\CloudWatchLoggerFactory::resolveCache"
+            ]
+        },
+        ConcatOperandRemoval: {
+            ignore: [
+                "SineMacula\\Log\\CloudWatch\\CloudWatchLoggerFactory::resolveFormatter",
+                "SineMacula\\Log\\CloudWatch\\CloudWatchLoggerFactory::resolveLevel",
+                "SineMacula\\Log\\CloudWatch\\CloudWatchLoggerFactory::resolveCache"
+            ]
+        }
+    }
+}
