@@ -24,11 +24,7 @@ use SineMacula\Log\CloudWatch\Exceptions\InvalidConfigurationException;
  */
 final class CloudWatchLoggerFactory
 {
-    /**
-     * The container instance.
-     *
-     * @var \Illuminate\Contracts\Container\Container
-     */
+    /** @var \Illuminate\Contracts\Container\Container The container instance. */
     private readonly Container $container;
 
     /**
