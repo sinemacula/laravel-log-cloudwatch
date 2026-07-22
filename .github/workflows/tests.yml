@@ -63,14 +63,6 @@ jobs:
                         laravel:
                             constraint: ^13.0
                             label: 13
-                    -   php: 8.4
-                        laravel:
-                            constraint: ^13.0
-                            label: 13
-                    -   php: 8.5
-                        laravel:
-                            constraint: ^13.0
-                            label: 13
 
         steps:
             -   name: Checkout
@@ -92,7 +84,7 @@ jobs:
                 run: composer test:coverage
 
             -   name: Publish code coverage
-                if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && matrix.php == '8.3' && matrix.laravel.label == '13' }}
+                if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' && matrix.laravel.label == '13' }}
                 uses: qltysh/qlty-action/coverage@v2
                 with:
                     oidc: true
