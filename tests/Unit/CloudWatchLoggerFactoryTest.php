@@ -103,8 +103,8 @@ final class CloudWatchLoggerFactoryTest extends TestCase
     }
 
     /**
-     * Test that the handler falls back to the default retention and batch
-     * size when the configuration keys are absent.
+     * Test that the handler falls back to the default retention and batch size
+     * when the configuration keys are absent.
      *
      * @return void
      */
@@ -202,8 +202,8 @@ final class CloudWatchLoggerFactoryTest extends TestCase
     }
 
     /**
-     * Test that the handler defaults to the debug logging level when the
-     * level key is absent.
+     * Test that the handler defaults to the debug logging level when the level
+     * key is absent.
      *
      * @return void
      */
@@ -271,8 +271,8 @@ final class CloudWatchLoggerFactoryTest extends TestCase
     }
 
     /**
-     * Test that the handler receives the configured requests-per-second
-     * limit, defaulting to zero.
+     * Test that the handler receives the configured requests-per-second limit,
+     * defaulting to zero.
      *
      * @return void
      */
@@ -528,8 +528,8 @@ final class CloudWatchLoggerFactoryTest extends TestCase
     }
 
     /**
-     * Test that a processor that is neither callable nor a resolvable
-     * callable class string is rejected.
+     * Test that a processor that is neither callable nor a resolvable callable
+     * class string is rejected.
      *
      * @return void
      */
