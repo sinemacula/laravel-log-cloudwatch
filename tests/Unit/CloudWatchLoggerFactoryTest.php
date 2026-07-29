@@ -605,7 +605,7 @@ final class CloudWatchLoggerFactoryTest extends TestCase
         $config['batch_size'] = 10001;
 
         $this->expectException(InvalidConfigurationException::class);
-        $this->expectExceptionMessage('Batch size can not be greater than 10000');
+        $this->expectExceptionMessage('The CloudWatch log channel configuration was rejected: Batch size can not be greater than 10000');
 
         $this->makeLogger($config);
     }
