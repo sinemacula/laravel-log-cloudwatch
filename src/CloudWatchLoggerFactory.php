@@ -22,10 +22,10 @@ use SineMacula\Log\CloudWatch\Exceptions\InvalidConfigurationException;
  * @author      Ben Carey <bdmc@sinemacula.co.uk>
  * @copyright   2026 Sine Macula Limited.
  */
-final class CloudWatchLoggerFactory
+final readonly class CloudWatchLoggerFactory
 {
     /** @var \Illuminate\Contracts\Container\Container The container instance. */
-    private readonly Container $container;
+    private Container $container;
 
     /**
      * Create a new CloudWatch logger factory.
@@ -50,21 +50,25 @@ final class CloudWatchLoggerFactory
     {
         $this->validate($config);
 
-        $handler = new CloudWatchHandler(
-            $this->makeClient($config),
-            $this->stringConfig($config, 'log_group'),
-            $this->stringConfig($config, 'log_stream'),
-            $this->resolveRetention($config),
-            $this->intConfig($config, 'batch_size', 1000),
-            $this->resolveTags($config),
-            $this->resolveLevel($config),
-            (bool) ($config['bubble'] ?? true),
-            (bool) ($config['create_group'] ?? true),
-            (bool) ($config['create_stream'] ?? true),
-            $this->intConfig($config, 'rps_limit', 0),
-            $this->resolveCache($config),
-            $this->intConfig($config, 'cache_ttl', 300),
-        );
+        try {
+            $handler = new CloudWatchHandler(
+                $this->makeClient($config),
+                $this->stringConfig($config, 'log_group'),
+                $this->stringConfig($config, 'log_stream'),
+                $this->resolveRetention($config),
+                $this->intConfig($config, 'batch_size', 1000),
+                $this->resolveTags($config),
+                $this->resolveLevel($config),
+                (bool) ($config['bubble'] ?? true),
+                (bool) ($config['create_group'] ?? true),
+                (bool) ($config['create_stream'] ?? true),
+                $this->intConfig($config, 'rps_limit', 0),
+                $this->resolveCache($config),
+                $this->intConfig($config, 'cache_ttl', 300),
+            );
+        } catch (\Exception $exception) {
+            throw new InvalidConfigurationException('The CloudWatch log channel configuration was rejected: ' . $exception->getMessage(), previous: $exception);
+        }
 
         $formatter = $this->resolveFormatter($config);
 

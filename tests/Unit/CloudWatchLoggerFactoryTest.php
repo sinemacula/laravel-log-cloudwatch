@@ -593,6 +593,24 @@ final class CloudWatchLoggerFactoryTest extends TestCase
     }
 
     /**
+     * Test that a handler-level configuration rejection is reported as a
+     * package configuration exception rather than leaking the handler's own.
+     *
+     * @return void
+     */
+    public function testHandlerConfigurationRejectionIsReportedAsAConfigurationException(): void
+    {
+        $config = $this->buildConfig();
+
+        $config['batch_size'] = 10001;
+
+        $this->expectException(InvalidConfigurationException::class);
+        $this->expectExceptionMessage('Batch size can not be greater than 10000');
+
+        $this->makeLogger($config);
+    }
+
+    /**
      * Test that configuration exceptions share the package marker contract.
      *
      * @return void
@@ -605,7 +623,7 @@ final class CloudWatchLoggerFactoryTest extends TestCase
 
         try {
             $this->makeLogger($config);
-        } catch (InvalidConfigurationException $exception) {
+        } catch (InvalidConfigurationException $exception) { // @phpstan-ignore catch.neverThrown
             self::assertInstanceOf(LogCloudWatchExceptionInterface::class, $exception);
 
             return;
