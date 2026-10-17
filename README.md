@@ -1,4 +1,6 @@
-# Laravel Log CloudWatch
+<h1 align="center">Laravel Log CloudWatch</h1>
+
+<div align="center">
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/sinemacula/laravel-log-cloudwatch.svg)](https://packagist.org/packages/sinemacula/laravel-log-cloudwatch)
 [![Build Status](https://github.com/sinemacula/laravel-log-cloudwatch/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/sinemacula/laravel-log-cloudwatch/actions/workflows/tests.yml)
@@ -6,6 +8,8 @@
 [![Maintainability](https://qlty.sh/gh/sinemacula/projects/laravel-log-cloudwatch/maintainability.svg)](https://qlty.sh/gh/sinemacula/projects/laravel-log-cloudwatch)
 [![Code Coverage](https://qlty.sh/gh/sinemacula/projects/laravel-log-cloudwatch/coverage.svg)](https://qlty.sh/gh/sinemacula/projects/laravel-log-cloudwatch)
 [![Total Downloads](https://img.shields.io/packagist/dt/sinemacula/laravel-log-cloudwatch.svg)](https://packagist.org/packages/sinemacula/laravel-log-cloudwatch)
+
+</div>
 
 A CloudWatch Monolog log driver for Laravel. Registers a `cloudwatch` custom log channel that ships log records to AWS
 CloudWatch Logs via [phpnexus/cwh](https://github.com/phpnexus/cwh), so application logs land in CloudWatch without any
