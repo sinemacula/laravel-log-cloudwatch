@@ -3,11 +3,14 @@
 <div align="center">
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/sinemacula/laravel-log-cloudwatch.svg)](https://packagist.org/packages/sinemacula/laravel-log-cloudwatch)
+[![PHP Version](https://img.shields.io/packagist/dependency-v/sinemacula/laravel-log-cloudwatch/php.svg)](https://packagist.org/packages/sinemacula/laravel-log-cloudwatch)
+[![Laravel Version](https://img.shields.io/packagist/dependency-v/sinemacula/laravel-log-cloudwatch/laravel/framework.svg?label=laravel)](https://packagist.org/packages/sinemacula/laravel-log-cloudwatch)
 [![Build Status](https://github.com/sinemacula/laravel-log-cloudwatch/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/sinemacula/laravel-log-cloudwatch/actions/workflows/tests.yml)
 [![Quality Gates](https://github.com/sinemacula/laravel-log-cloudwatch/actions/workflows/quality-gates.yml/badge.svg?branch=master)](https://github.com/sinemacula/laravel-log-cloudwatch/actions/workflows/quality-gates.yml)
 [![Maintainability](https://qlty.sh/gh/sinemacula/projects/laravel-log-cloudwatch/maintainability.svg)](https://qlty.sh/gh/sinemacula/projects/laravel-log-cloudwatch)
 [![Code Coverage](https://qlty.sh/gh/sinemacula/projects/laravel-log-cloudwatch/coverage.svg)](https://qlty.sh/gh/sinemacula/projects/laravel-log-cloudwatch)
 [![Total Downloads](https://img.shields.io/packagist/dt/sinemacula/laravel-log-cloudwatch.svg)](https://packagist.org/packages/sinemacula/laravel-log-cloudwatch)
+[![License](https://img.shields.io/github/license/sinemacula/laravel-log-cloudwatch.svg)](LICENSE)
 
 </div>
 
