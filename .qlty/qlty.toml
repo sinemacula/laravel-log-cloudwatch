@@ -33,7 +33,7 @@ test_patterns = [
 ]
 
 [runtimes.enabled]
-php = "8.3"
+php = "8.5"
 
 [smells]
 mode = "comment"
@@ -72,23 +72,13 @@ package_filters = ["slevomat", "dealerdirect", "sinemacula"]
 [plugins.definitions.php-codesniffer.drivers.lint]
 success_codes = [0, 1, 2, 3]
 
-# The Symfony components are held on the 7.x line because 3.90+ otherwise
-# resolves Symfony 8, which requires PHP 8.4.1 and uses syntax the PHP 8.3
-# runner cannot parse. These pins only take effect without a package_file.
+# The fixer config builds its rules from the standards package, which the
+# sandbox gets from extra_packages rather than a package_file: setting
+# package_file makes qlty ignore extra_packages.
 [[plugin]]
 name = "php-cs-fixer"
 version = "3.95.25"
-extra_packages = [
-    "sinemacula/coding-standards@1.28.0",
-    "symfony/console@^7.4",
-    "symfony/event-dispatcher@^7.4",
-    "symfony/filesystem@^7.4",
-    "symfony/finder@^7.4",
-    "symfony/options-resolver@^7.4",
-    "symfony/process@^7.4",
-    "symfony/stopwatch@^7.4",
-    "symfony/string@^7.4",
-]
+extra_packages = ["sinemacula/coding-standards@1.28.0"]
 
 [[plugin]]
 name = "phpstan"
