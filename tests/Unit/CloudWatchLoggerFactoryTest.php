@@ -773,6 +773,7 @@ final class CloudWatchLoggerFactoryTest extends TestCase
         $config['level'] = 999;
 
         $this->expectException(InvalidConfigurationException::class);
+        $this->expectExceptionMessage('The CloudWatch log channel [level] must be a ' . Level::class . ' instance, or one of its names or values.');
 
         $this->makeLogger($config);
     }
