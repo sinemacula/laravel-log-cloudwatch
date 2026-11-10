@@ -729,6 +729,84 @@ final class CloudWatchLoggerFactoryTest extends TestCase
     }
 
     /**
+     * Test that a level of a scalar type Monolog would not accept is rejected.
+     *
+     * @return void
+     */
+    public function testBooleanLevelThrows(): void
+    {
+        $config = $this->buildConfig();
+
+        $config['level'] = true;
+
+        $this->expectException(InvalidConfigurationException::class);
+
+        $this->makeLogger($config);
+    }
+
+    /**
+     * Test that a level name Monolog does not define is rejected.
+     *
+     * @return void
+     */
+    public function testUndefinedLevelNameThrows(): void
+    {
+        $config = $this->buildConfig();
+
+        $config['level'] = 'verbose';
+
+        $this->expectException(InvalidConfigurationException::class);
+        $this->expectExceptionMessage('The CloudWatch log channel [level] must be a ' . Level::class . ' instance, or one of its names or values.');
+
+        $this->makeLogger($config);
+    }
+
+    /**
+     * Test that a level value Monolog does not define is rejected.
+     *
+     * @return void
+     */
+    public function testUndefinedLevelValueThrows(): void
+    {
+        $config = $this->buildConfig();
+
+        $config['level'] = 999;
+
+        $this->expectException(InvalidConfigurationException::class);
+
+        $this->makeLogger($config);
+    }
+
+    /**
+     * Test that a level name is matched regardless of its letter case.
+     *
+     * @return void
+     */
+    public function testLevelNameIsCaseInsensitive(): void
+    {
+        $config = $this->buildConfig();
+
+        $config['level'] = 'Critical';
+
+        self::assertSame(Level::Critical, $this->resolveHandler($config)->getLevel());
+    }
+
+    /**
+     * Test that a numeric string level, as an environment variable supplies it,
+     * is accepted.
+     *
+     * @return void
+     */
+    public function testNumericStringLevelIsAccepted(): void
+    {
+        $config = $this->buildConfig();
+
+        $config['level'] = (string) Level::Alert->value;
+
+        self::assertSame(Level::Alert, $this->resolveHandler($config)->getLevel());
+    }
+
+    /**
      * Test that an integer level is accepted.
      *
      * @return void
