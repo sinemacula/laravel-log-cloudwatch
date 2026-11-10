@@ -187,8 +187,16 @@ final readonly class CloudWatchLoggerFactory
     {
         $level = $config['level'] ?? 'debug';
 
-        if (!is_string($level) && !is_int($level) && !$level instanceof Level) {
-            throw new InvalidConfigurationException('The CloudWatch log channel [level] must be a string, integer, or ' . Level::class . ' instance.');
+        if ($level instanceof Level) {
+            return $level;
+        }
+
+        if (is_string($level)) {
+            $level = is_numeric($level) ? (int) $level : strtoupper($level);
+        }
+
+        if (!in_array($level, Level::NAMES, true) && !in_array($level, Level::VALUES, true)) {
+            throw new InvalidConfigurationException('The CloudWatch log channel [level] must be a ' . Level::class . ' instance, or one of its names or values.');
         }
 
         return Logger::toMonologLevel($level);
