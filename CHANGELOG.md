@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/sinemacula/laravel-log-cloudwatch/compare/v1.1.0...v1.1.1) (2026-11-10)
+
+
+### Bug Fixes
+
+* clear the qlty findings and drop configuration the shared source provides ([#63](https://github.com/sinemacula/laravel-log-cloudwatch/issues/63)) ([653f2d9](https://github.com/sinemacula/laravel-log-cloudwatch/commit/653f2d90b3c7244f92a1ddbd909789b63095d23a))
+
 ## [1.1.0](https://github.com/sinemacula/laravel-log-cloudwatch/compare/v1.0.0...v1.1.0) (2026-07-30)
 
 
